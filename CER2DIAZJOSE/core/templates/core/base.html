@@ -9,10 +9,29 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-success">
-        <div class="container">
-            <a class="navbar-brand" href="{% url 'index' %}">Reciclaje USM</a>
-        </div>
-    </nav>
+  <div class="container">
+    <a class="navbar-brand" href="{% url 'index' %}">Reciclaje USM</a>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="{% url 'materiales' %}">Materiales</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'puntos_limpios' %}">Puntos Limpios</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'recomendaciones' %}">Recomendaciones</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'metricas' %}">Métricas</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'registro' %}">Registrarse</a></li>
+        {% if user.is_authenticated %}
+        <li class="nav-item"><a class="nav-link" href="{% url 'nueva_solicitud' %}">Nueva Solicitud</a></li>
+        {% endif %}
+        {% if user.is_authenticated %}
+        <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Cerrar sesión</a></li>
+        {% else %}
+        <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Iniciar sesión</a></li>
+        {% endif %}
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
     
     <div class="container mt-4">
         {% block content %}

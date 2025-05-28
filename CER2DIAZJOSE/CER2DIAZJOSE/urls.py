@@ -17,7 +17,20 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from core import views
+from django.contrib.auth import views as auth_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
+    path('materiales/', views.materiales, name='materiales'),
+    path('puntos-limpios/', views.puntos_limpios, name='puntos_limpios'),
+    path('recomendaciones/', views.recomendaciones, name='recomendaciones'),
+    path('metricas/', views.metricas, name='metricas'),
+    path('registro/', views.registro, name='registro'),
+    path('solicitud/nueva/', views.nueva_solicitud, name='nueva_solicitud'),
+
+]
+
+urlpatterns += [
+    path('login/', auth_views.LoginView.as_view(template_name='core/login.html'), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
 ]
