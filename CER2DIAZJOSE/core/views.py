@@ -9,6 +9,7 @@ from .models import MATERIALES
 from .forms import *
 from django.contrib.auth.models import Group
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import user_passes_test
 
 # Create your views here.
 def index(request):
@@ -88,3 +89,34 @@ def nueva_solicitud(request):
     else:
         form = SolicitudForm()
     return render(request, 'core/nueva_solicitud.html', {'form': form})
+
+@login_required
+def historial_solicitudes(request):
+    solicitudes = SolicitudRetiro.objects.filter(ciudadano=request.user).order_by('-fecha_creacion')
+    return render(request, 'core/historial_solicitudes.html', {'solicitudes': solicitudes})
+
+def es_operario(user):
+    return user.groups.filter(name='Operario').exists()
+
+@user_passes_test(es_operario)
+def solicitudes_operario(request):
+    solicitudes = SolicitudRetiro.objects.filter(operario_asignado=request.user)
+    return render(request, 'core/operario_solicitudes.html', {'solicitudes': solicitudes})
+
+@user_passes_test(es_operario)
+def actualizar_solicitud(request, solicitud_id):
+    solicitud = SolicitudRetiro.objects.get(id=solicitud_id, operario_asignado=request.user)
+
+    if request.method == 'POST':
+        form = SolicitudOperarioForm(request.POST, instance=solicitud)
+        if form.is_valid():
+            solicitud = form.save(commit=False)
+            if solicitud.estado == 'COM':
+                from django.utils import timezone
+                solicitud.fecha_completada = timezone.now()
+            solicitud.save()
+            return redirect('solicitudes_operario')
+    else:
+        form = SolicitudOperarioForm(instance=solicitud)
+
+    return render(request, 'core/operario_actualizar.html', {'form': form, 'solicitud': solicitud})

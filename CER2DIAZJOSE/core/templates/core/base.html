@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 {% load static %}
+{% load usuario_grupos %}
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Reciclaje Municipal{% endblock %}</title>
@@ -8,6 +9,7 @@
     <link href="{% static 'core/css/estilos.css' %}" rel="stylesheet">
 </head>
 <body>
+  {% csrf_token %}
     <nav class="navbar navbar-expand-lg navbar-dark bg-success">
   <div class="container">
     <a class="navbar-brand" href="{% url 'index' %}">Reciclaje USM</a>
@@ -22,9 +24,20 @@
         <li class="nav-item"><a class="nav-link" href="{% url 'nueva_solicitud' %}">Nueva Solicitud</a></li>
         {% endif %}
         {% if user.is_authenticated %}
-        <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Cerrar sesión</a></li>
+        <li class="nav-item">
+          <form action="{% url 'logout' %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" class="nav-link btn btn-link">Cerrar sesión</button>
+          </form>
+        </li>
         {% else %}
         <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Iniciar sesión</a></li>
+        {% endif %}
+        {% if user.is_authenticated %}
+        <li class="nav-item"><a class="nav-link" href="{% url 'historial_solicitudes' %}">Mis Solicitudes</a></li>
+        {% endif %}
+        {% if user.is_authenticated and user|has_group:"Operario" %}
+<li class="nav-item"><a class="nav-link" href="{% url 'solicitudes_operario' %}">Mis Solicitudes Asignadas</a></li>
         {% endif %}
 
       </ul>

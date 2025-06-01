@@ -27,10 +27,11 @@ urlpatterns = [
     path('metricas/', views.metricas, name='metricas'),
     path('registro/', views.registro, name='registro'),
     path('solicitud/nueva/', views.nueva_solicitud, name='nueva_solicitud'),
-
-]
-
-urlpatterns += [
     path('login/', auth_views.LoginView.as_view(template_name='core/login.html'), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),
+    path('solicitudes/', views.historial_solicitudes, name='historial_solicitudes'),
+    path('operario/solicitudes/', views.solicitudes_operario, name='solicitudes_operario'),
+    path('operario/solicitud/<int:solicitud_id>/actualizar/', views.actualizar_solicitud, name='actualizar_solicitud'),
+
 ]
+

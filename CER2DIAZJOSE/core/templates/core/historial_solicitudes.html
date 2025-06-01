@@ -1,0 +1,44 @@
+{% extends 'core/base.html' %}
+{% block title %}Historial de Solicitudes{% endblock %}
+
+{% block content %}
+<h2>Mis Solicitudes de Retiro</h2>
+
+{% if solicitudes %}
+<table class="table table-bordered table-hover">
+    <thead class="table-success">
+        <tr>
+            <th>Fecha creación</th>
+            <th>Material</th>
+            <th>Cantidad</th>
+            <th>Fecha estimada</th>
+            <th>Estado</th>
+            <th>Comentario operario</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for s in solicitudes %}
+        <tr>
+            <td>{{ s.fecha_creacion|date:"d/m/Y H:i" }}</td>
+            <td>{{ s.get_material_display }}</td>
+            <td>{{ s.cantidad }}</td>
+            <td>{{ s.fecha_estimada }}</td>
+            <td>
+                {% if s.estado == "PEN" %}
+                    <span class="badge bg-warning text-dark">Pendiente</span>
+                {% elif s.estado == "RUT" %}
+                    <span class="badge bg-info text-dark">En ruta</span>
+                {% else %}
+                    <span class="badge bg-success">Completada</span>
+                {% endif %}
+            </td>
+            <td>{{ s.comentario_operario|default:"-" }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No has ingresado ninguna solicitud todavía.</p>
+{% endif %}
+
+{% endblock %}

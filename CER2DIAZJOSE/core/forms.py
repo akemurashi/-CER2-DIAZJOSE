@@ -30,3 +30,7 @@ class SolicitudForm(forms.ModelForm):
         widgets = {
             'fecha_estimada': forms.DateInput(attrs={'type': 'date'}),
         }
+class SolicitudOperarioForm(forms.ModelForm):
+    class Meta:
+        model = SolicitudRetiro
+        fields = ['estado', 'comentario_operario']
