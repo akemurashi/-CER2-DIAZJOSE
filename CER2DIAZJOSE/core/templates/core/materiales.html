@@ -1,15 +1,38 @@
 {% extends 'core/base.html' %}
+{% load static %}
 {% block title %}Materiales Aceptados{% endblock %}
 
 {% block content %}
 <h2>Materiales Aceptados</h2>
 <ul class="list-group">
-    <li class="list-group-item"><strong>PAP:</strong> Papel y cartón (cajas, hojas, cuadernos sin espirales ni plásticos).</li>
-    <li class="list-group-item"><strong>PLAS:</strong> Plásticos reciclables (botellas PET, envases, tapas. No bolsas).</li>
-    <li class="list-group-item"><strong>VID:</strong> Vidrios (botellas y frascos sin tapa).</li>
-    <li class="list-group-item"><strong>LAT:</strong> Latas (aluminio y hojalata).</li>
-    <li class="list-group-item"><strong>ELEC:</strong> Electrónicos pequeños (celulares, cargadores, teclados).</li>
-    <li class="list-group-item"><strong>TEX:</strong> Textiles (ropa en buen estado, sábanas, cortinas).</li>
-    <li class="list-group-item"><strong>VOL:</strong> Voluminosos reciclables (muebles, colchones, bicicletas).</li>
+    <li class="list-group-item d-flex align-items-center">
+        <img src="{% static 'core/img/papel.jpg' %}" width="40" class="me-3" alt="Papel y Cartón">
+        <strong>PAP:</strong> Papel y cartón — cajas, hojas, cuadernos (sin espirales ni plásticos).
+    </li>
+    <li class="list-group-item d-flex align-items-center">
+        <img src="{% static 'core/img/icono_plastico.jpg' %}" width="40" class="me-3" alt="Plásticos">
+        <strong>PLAS:</strong> Plásticos reciclables — botellas PET, envases, tapas. No bolsas ni film.
+    </li>
+    <li class="list-group-item d-flex align-items-center">
+        <img src="{% static 'core/img/icono_vidrio.jpeg' %}" width="40" class="me-3" alt="Vidrio">
+        <strong>VID:</strong> Vidrios — botellas y frascos sin tapa. No se aceptan vidrios rotos ni espejos.
+    </li>
+    <li class="list-group-item d-flex align-items-center">
+        <img src="{% static 'core/img/icono_latas.webp' %}" width="40" class="me-3" alt="Latas">
+        <strong>LAT:</strong> Latas — aluminio y hojalata, como latas de bebidas o conservas.
+    </li>
+    <li class="list-group-item d-flex align-items-center">
+        <img src="{% static 'core/img/icono_electronicos.jpg' %}" width="40" class="me-3" alt="Electrónicos">
+        <strong>ELEC:</strong> Electrónicos pequeños — celulares, teclados, cargadores. No refrigeradores.
+    </li>
+    <li class="list-group-item d-flex align-items-center">
+        <img src="{% static 'core/img/icono_textil.jpg' %}" width="40" class="me-3" alt="Textiles">
+        <strong>TEX:</strong> Textiles — ropa en buen estado, sábanas, cortinas. No ropa sucia o rota.
+    </li>
+    <li class="list-group-item d-flex align-items-center">
+        <img src="{% static 'core/img/icono_voluminosos.jpg' %}" width="40" class="me-3" alt="Voluminosos">
+        <strong>VOL:</strong>Voluminosos reciclables — muebles, colchones, bicicletas, palets.
+    </li>
 </ul>
+
 {% endblock %}

@@ -7,4 +7,27 @@
         <h1 class="display-5">Bienvenido al Portal de Reciclaje</h1>
         <p class="lead">Contribuye al medioambiente registrando tus solicitudes de retiro</p>
     </div>
+    <div class="row text-center">
+        <div class="col-md-4">
+            <div class="card p-3 mb-4">
+                <h5 class="card-title"><i class="bi bi-recycle"></i> Materiales</h5>
+                <p>Consulta qué puedes reciclar.</p>
+                <a href="{% url 'materiales' %}" class="btn btn-success">Ver más</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card p-3 mb-4">
+                <h5 class="card-title"><i class="bi bi-geo-alt-fill"></i> Puntos Limpios</h5>
+                <p>Encuentra puntos cercanos de reciclaje.</p>
+                <a href="{% url 'puntos_limpios' %}" class="btn btn-success">Ver más</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card p-3 mb-4">
+                <h5 class="card-title"><i class="bi bi-bar-chart-line-fill"></i> Métricas</h5>
+                <p>Consulta el impacto ciudadano.</p>
+                <a href="{% url 'metricas' %}" class="btn btn-success">Ver más</a>
+            </div>
+        </div>
+    </div>
 {% endblock %}

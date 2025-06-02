@@ -33,6 +33,16 @@
                 {% endif %}
             </td>
             <td>{{ s.comentario_operario|default:"-" }}</td>
+            <td>
+             {% if s.estado == "PEN" %}
+            <span class="badge bg-warning text-dark">Pendiente</span>
+            {% elif s.estado == "RUT" %}
+            <span class="badge bg-info text-dark">En Ruta</span>
+            {% elif s.estado == "COM" %}
+            <span class="badge bg-success">Completada</span>
+            {% endif %}
+        </td>
+
         </tr>
         {% endfor %}
     </tbody>

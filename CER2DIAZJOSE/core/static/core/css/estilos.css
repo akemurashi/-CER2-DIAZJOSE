@@ -1,0 +1,28 @@
+body {
+    background-image: url('/static/core/img/beautiful-green-leaves-watercolor-background-vector.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+.navbar-brand {
+    font-weight: bold;
+}
+
+.card {
+    border-radius: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+footer {
+    font-size: 0.95rem;
+    color: #111; /* Negro para mejor contraste */
+    background: rgba(255, 255, 255, 0.55); /* Fondo blanco semitransparente */
+    border-radius: 10px;
+    padding: 0.5rem 1rem;
+    max-width: 350px;
+    margin: 2rem auto 1rem auto;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    backdrop-filter: blur(2px); /* Desenfoque sutil */
+    text-shadow: none; /* Sin sombra para texto negro */
+}
